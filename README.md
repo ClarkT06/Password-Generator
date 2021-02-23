@@ -11,7 +11,7 @@ The next prompts will have you select whether you want uppercase, lowercase, num
 Once compete, your password will be displayed for you to copy and save in a secure location for further use. 
 
 The Page resembles the picture in the link below:
-Link – (assets/images/screenshot.jpg).
+Link – (/images/model.png).
 
 As always, email me at – pcmtoombs@gmail.com with any questions and best of luck!
  

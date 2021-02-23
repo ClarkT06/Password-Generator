@@ -1,70 +1,90 @@
+//Setting the global variables for the entire project 
 
-var passwordQuestions = function() {
-var passwordLength = window.prompt('How long do you want your password?');
-if (passwordLength < 8 || passwordLength > 128)  {
-  window.alert('Password too short, please try again.')
-  return
-}
-if (isNaN(passwordLength)) {
+var numberArray = ['0123456789']
+var uppercaseArray = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+var lowercaseArray = ['abcdefghijklmnopqrstuvwxyz']
+var specialArray = ['!@#$%^&*()']
 
-  window.alert('Please enter numeric value, try again.')
-  return
-}
-//var passwordLower = window.prompt('How long do you want your password?');
-var passwordUpper = window.confirm('Do you want Upper Case letters in your password');
-var passwordNumber = window.prompt('Do you want Lower Case Letters in your password');
-var passwordSpecial = window.prompt('Do you want special characters in your Password');
 
-var Options = {
+// Beginning questions for Selecting the password options needed
+var passwordQuestions = function () {
+  var passwordLength = window.prompt('How long do you want your password?\nSelect a number between 8 and 128');
 
-  length: passwordLength, 
-  lowercase: passwordLower,
-  uppercase: passwordUpper,
-  special: passwordSpecial,
-  number: passwordNumber,
+  // Created prompt to reset the question if the parameter is below 8 or over 128 characters
+  if (passwordLength < 8 || passwordLength > 128) {
+    window.alert('Must be between 8 and 128 characters, please try again.')
+    return
+  }
+  // Created prompt if user inputs a non number
+  if (isNaN(passwordLength)) {
 
-}
-return Options
+    window.alert('Please enter numeric value, try again.')
+    return
+  }
 
-//confirm=- true or false 
-//passwordCapital paswordUpper
-//after, store all questions into an object - then call function of password questions / then we acan manipulate array
+  //Additional questions to get parameters of Password
+  var passwordLower = window.confirm('Do you want lower Case Letters in your password\nOK for Yes or Cancel for No');
+  var passwordUpper = window.confirm('Do you want UPPER Case letters in your password\nOK for Yes or Cancel for No');
+  var passwordNumber = window.confirm('Do you want numbers in your password\nOK for Yes or Cancel for No');
+  var passwordSpecial = window.confirm('Do you want special characters in your Password\nOK for Yes or Cancel for No');
 
-}
+  while (passwordUpper === false && passwordLower === false && passwordNumber === false && passwordSpecial == false) {
+    alert("Please select at least one of the options for a secure password.")
 
-var generatePassword = function(){
-// creats a variable and call objects 
-var passwordOptions = passwordQuestions() 
-//
-var possibleChar = [] 
-var finalPassword = []
-if (passwordOptions.lowercase === true) {
-  possibleChar.push(lowerCaseArray) //adding lowercase array to possible char - need to create
+    return
+  }
 
-}
-if (passwordOptions.uppercase === true) {
-possibleChar.push(uppercaseArray) 
+  var Options = {
 
-}
+    length: passwordLength,
+    lowercase: passwordLower,
+    uppercase: passwordUpper,
+    special: passwordSpecial,
+    number: passwordNumber,
 
-if (passwordOptions.special === true) {
-  possibleChar.push(specialArray) 
+  }
   
+  return Options
+
+  //confirm=- true or false 
+  //passwordCapital paswordUpper
+  //after, store all questions into an object - then call function of password questions / then we acan manipulate array
+
+}
+
+var generatePassword = function () {
+  // creats a variable and call objects 
+  var passwordOptions = passwordQuestions()
+  //
+  var possibleChar = []
+  var finalPassword = []
+  if (passwordOptions.lowercase === true) {
+    possibleChar.push(lowercaseArray)
+
+  }
+  if (passwordOptions.uppercase === true) {
+    possibleChar.push(uppercaseArray)
+
+  }
+
+  if (passwordOptions.special === true) {
+    possibleChar.push(specialArray)
+
   }
   if (passwordOptions.number === true) {
-    possibleChar.push(numberArray) 
-    
-    }
+    possibleChar.push(numberArray)
 
-for (var i=0; i<passwordOptions.length; i++){
+  }
 
-  var randomChar = Math.floor(Math.random()*possibleChar.length)
-  var randomElement = possibleChar[randomChar]
-  finalPassword.push(randomElement)
-}
-return finalPassword.join('')
+  for (var i = 0; i < passwordOptions.length; i++) {
 
-//fix confirms and change messages and create arrays /
+    var randomChar = Math.floor(Math.random() * possibleChar.length)
+    var randomElement = possibleChar[randomChar]
+    finalPassword.push(randomElement)
+  }
+  return finalPassword.join('')
+
+  //fix confirms and change messages and create arrays /
 }
 
 // Assignment Code
